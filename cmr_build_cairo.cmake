@@ -103,6 +103,9 @@ set(CAIRO_ENABLE_XCB_SHM "no" CACHE STRING
 set(CAIRO_ENABLE_QT "no" CACHE STRING
   "[no/auto/yes] Enable cairo's Qt surface backend feature [default=no]"
 )
+set(CAIRO_ENABLE_QUARTZ "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's Quartz surface backend feature [default=auto]"
+)
 set(CAIRO_ENABLE_QUARTZ_FONT "auto" CACHE STRING
   "[no/auto/yes] Enable cairo's Quartz font backend feature [default=auto]"
 )
