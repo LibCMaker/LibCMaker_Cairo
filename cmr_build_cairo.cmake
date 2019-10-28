@@ -64,24 +64,11 @@ set(LIBCMAKER_PIXMAN_SRC_DIR ${PIXMAN_lib_DIR})
 # Library specific vars and options
 #-----------------------------------------------------------------------
 
-# TODO: all for Cairo
-
-# TODO:
-#option(CAIRO_DISABLE_ATOMIC "disable use of native atomic operations" OFF)
-option(CAIRO_DISABLE_ATOMIC "disable use of native atomic operations" ON)
+option(CAIRO_ENABLE_GTK_DOC "use gtk-doc to build documentation [[default=no]]" OFF)
+option(AC_DISABLE_LARGEFILE "omit support for large files" OFF)
+option(CAIRO_DISABLE_ATOMIC "disable use of native atomic operations" OFF)
 option(CAIRO_ENABLE_GCOV "Enable gcov" OFF)
-# TODO:
-#option(CAIRO_DISABLE_VALGRIND "Disable valgrind support" OFF)
-option(CAIRO_DISABLE_VALGRIND "Disable valgrind support" ON)
-option(CAIRO_DISABLE_SOME_FLOATING_POINT
-"Disable certain code paths that rely heavily on
-double precision floating-point calculation. This
-option can improve performance on systems without a
-double precision floating-point unit, but might
-degrade performance on those that do."
-  OFF
-)
-
+option(CAIRO_DISABLE_VALGRIND "Disable valgrind support" OFF)
 # TODO:
 #set(CAIRO_ENABLE_XLIB "auto" CACHE STRING
 #  "[no/auto/yes] Enable cairo's Xlib surface backend feature [default=auto]"
@@ -113,8 +100,65 @@ set(CAIRO_ENABLE_XLIB_XCB "no" CACHE STRING
 set(CAIRO_ENABLE_XCB_SHM "no" CACHE STRING
   "[no/auto/yes] Enable cairo's XCB/SHM functions feature [default=auto]"
 )
+set(CAIRO_ENABLE_QT "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's Qt surface backend feature [default=no]"
+)
+set(CAIRO_ENABLE_QUARTZ_FONT "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's Quartz font backend feature [default=auto]"
+)
+set(CAIRO_ENABLE_QUARTZ_IMAGE "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's Quartz Image surface backend feature [default=no]"
+)
+set(CAIRO_ENABLE_WIN32 "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's Microsoft Windows surface backend feature [default=auto]"
+)
+set(CAIRO_ENABLE_WIN32_FONT "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's Microsoft Windows font backend feature [default=auto]"
+)
+set(CAIRO_ENABLE_OS2 "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's OS/2 surface backend feature [default=no]"
+)
+set(CAIRO_ENABLE_BEOS "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's BeOS/Zeta surface backend feature [default=no]"
+)
+set(CAIRO_ENABLE_DRM "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's DRM surface backend feature [default=no]"
+)
+set(CAIRO_ENABLE_GALLIUM "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's Gallium3D surface backend feature [default=no]"
+)
+set(CAIRO_WITH_GALLIUM "TODO" CACHE STRING
+  "[/path/to/mesa] directory to find gallium enabled mesa"
+)
 set(CAIRO_ENABLE_PNG "yes" CACHE STRING
   "[no/auto/yes] Enable cairo's PNG functions feature [default=yes]"
+)
+set(CAIRO_ENABLE_GL "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's OpenGL surface backend feature [default=no]"
+)
+set(CAIRO_ENABLE_GLESV2 "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's OpenGLESv2 surface backend feature [default=no]"
+)
+set(CAIRO_ENABLE_GLESV3 "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's OpenGLESv3 surface backend feature [default=no]"
+)
+set(CAIRO_ENABLE_COGL "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's Cogl surface backend feature [default=no]"
+)
+set(CAIRO_ENABLE_DIRECTFB "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's directfb surface backend feature [default=no]"
+)
+set(CAIRO_ENABLE_VG "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's OpenVG surface backend feature [default=no]"
+)
+set(CAIRO_ENABLE_EGL "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's EGL functions feature [default=auto]"
+)
+set(CAIRO_ENABLE_GLX "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's GLX functions feature [default=auto]"
+)
+set(CAIRO_ENABLE_WGL "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's WGL functions feature [default=auto]"
 )
 set(CAIRO_ENABLE_SCRIPT "yes" CACHE STRING
   "[no/auto/yes] Enable cairo's script surface backend feature [default=yes]"
@@ -134,6 +178,9 @@ set(CAIRO_ENABLE_PDF "yes" CACHE STRING
 set(CAIRO_ENABLE_SVG "yes" CACHE STRING
   "[no/auto/yes] Enable cairo's SVG surface backend feature [default=yes]"
 )
+set(CAIRO_ENABLE_TEST_SURFACES "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's test surfaces feature [default=no]"
+)
 set(CAIRO_ENABLE_TEE "no" CACHE STRING
   "[no/auto/yes] Enable cairo's tee surface backend feature [default=no]"
 )
@@ -142,6 +189,32 @@ set(CAIRO_ENABLE_XML "no" CACHE STRING
 )
 set(CAIRO_ENABLE_PTHREAD "auto" CACHE STRING
   "[no/auto/yes] Enable cairo's pthread feature [default=auto]"
+)
+set(CAIRO_ENABLE_GOBJECT "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's gobject functions feature [default=auto]"
+)
+option(CAIRO_ENABLE_FULL_TESTING
+"Sets the test suite to perform full testing by
+default, which will dramatically slow down make
+check, but is a *requirement* before release."
+  OFF
+)
+set(CAIRO_ENABLE_TRACE "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's cairo-trace feature [default=auto]"
+)
+set(CAIRO_ENABLE_INTERPRETER "yes" CACHE STRING
+  "[no/auto/yes] Enable cairo's cairo-script-interpreter feature [default=yes]"
+)
+set(CAIRO_ENABLE_SYMBOL_LOOKUP "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's symbol-lookup feature [default=auto]"
+)
+option(CAIRO_DISABLE_SOME_FLOATING_POINT
+"Disable certain code paths that rely heavily on
+double precision floating-point calculation. This
+option can improve performance on systems without a
+double precision floating-point unit, but might
+degrade performance on those that do."
+  OFF
 )
 
 

@@ -22,8 +22,6 @@ include(CheckTypeSize)
 # Part of 'configure --help' output:
 #
 
-# TODO: make all as option() or set(CACHE)
-
 #Optional Features:
 #[...]
 #  --enable-gtk-doc        use gtk-doc to build documentation [[default=no]]
@@ -191,6 +189,7 @@ check_include_file("sys/ioctl.h" HAVE_SYS_IOCTL_H)
 
 # Api documentation
 #GTK_DOC_CHECK([1.15],[--flavour no-tmpl])
+option(CAIRO_ENABLE_GTK_DOC "use gtk-doc to build documentation [[default=no]]" OFF)
 set(enable_gtk_doc "no")
 # TODO:
 
@@ -683,6 +682,9 @@ endif()
 # ===========================================================================
 
 #CAIRO_ENABLE_SURFACE_BACKEND(qt, Qt, no,
+set(CAIRO_ENABLE_QT "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's Qt surface backend feature [default=no]"
+)
 set(use_qt "no (requires Qt4 development libraries)")
 # TODO:
 #set(CAIRO_HAS_QT_SURFACE 1)
@@ -691,18 +693,27 @@ set(use_qt "no (requires Qt4 development libraries)")
 # ===========================================================================
 
 #CAIRO_ENABLE_SURFACE_BACKEND(quartz, Quartz, auto,
+set(CAIRO_ENABLE_QUARTZ "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's Quartz surface backend feature [default=auto]"
+)
 set(use_quartz "no")
 # TODO:
 #set(CAIRO_HAS_QUARTZ_SURFACE 1)
 
 
 #CAIRO_ENABLE_FONT_BACKEND(quartz_font, Quartz, auto,
+set(CAIRO_ENABLE_QUARTZ_FONT "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's Quartz font backend feature [default=auto]"
+)
 set(use_quartz_font ${use_quartz})
 # TODO:
 #set(CAIRO_HAS_QUARTZ_FONT 1)
 
 
 #CAIRO_ENABLE_SURFACE_BACKEND(quartz_image, Quartz Image, no,
+set(CAIRO_ENABLE_QUARTZ_IMAGE "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's Quartz Image surface backend feature [default=no]"
+)
 set(use_quartz_image ${use_quartz})
 # TODO:
 #set(CAIRO_HAS_QUARTZ_IMAGE_SURFACE 1)
@@ -711,12 +722,18 @@ set(use_quartz_image ${use_quartz})
 # ===========================================================================
 
 #CAIRO_ENABLE_SURFACE_BACKEND(win32, Microsoft Windows, auto,
+set(CAIRO_ENABLE_WIN32 "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's Microsoft Windows surface backend feature [default=auto]"
+)
 set(use_win32 "no")
 # TODO:
 #set(CAIRO_HAS_WIN32_SURFACE 1)
 
 
 #CAIRO_ENABLE_FONT_BACKEND(win32_font, Microsoft Windows, auto,
+set(CAIRO_ENABLE_WIN32_FONT "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's Microsoft Windows font backend feature [default=auto]"
+)
 set(use_win32_font ${use_win32})
 # TODO:
 #set(CAIRO_HAS_WIN32_FONT 1)
@@ -730,6 +747,9 @@ set(test_win32_printing "no")
 # ===========================================================================
 
 #CAIRO_ENABLE_SURFACE_BACKEND(os2, OS/2, no,
+set(CAIRO_ENABLE_OS2 "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's OS/2 surface backend feature [default=no]"
+)
 set(use_os2 "no")
 # TODO:
 #set(CAIRO_HAS_OS2_SURFACE 1)
@@ -738,6 +758,9 @@ set(use_os2 "no")
 # ===========================================================================
 
 #CAIRO_ENABLE_SURFACE_BACKEND(beos, BeOS/Zeta, no,
+set(CAIRO_ENABLE_BEOS "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's BeOS/Zeta surface backend feature [default=no]"
+)
 set(use_beos "no")
 # TODO:
 #set(CAIRO_HAS_BEOS_SURFACE 1)
@@ -746,12 +769,21 @@ set(use_beos "no")
 # ===========================================================================
 
 #CAIRO_ENABLE_SURFACE_BACKEND(drm, DRM, no,
+set(CAIRO_ENABLE_DRM "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's DRM surface backend feature [default=no]"
+)
 set(use_drm "no")
 # TODO:
 #set(CAIRO_HAS_DRM_SURFACE 1)
 
 
 #CAIRO_ENABLE_SURFACE_BACKEND(gallium, Gallium3D, no,
+set(CAIRO_ENABLE_GALLIUM "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's Gallium3D surface backend feature [default=no]"
+)
+set(CAIRO_WITH_GALLIUM "TODO" CACHE STRING
+  "[/path/to/mesa] directory to find gallium enabled mesa"
+)
 set(use_gallium "no")
 # TODO:
 #set(CAIRO_HAS_GALLIUM_SURFACE 1)
@@ -780,6 +812,9 @@ endif()
 # ===========================================================================
 
 #CAIRO_ENABLE_SURFACE_BACKEND(gl, OpenGL, no,
+set(CAIRO_ENABLE_GL "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's OpenGL surface backend feature [default=no]"
+)
 set(use_gl "no")
 # TODO:
 #set(CAIRO_HAS_GL_SURFACE 1)
@@ -788,6 +823,9 @@ set(use_gl "no")
 # ===========================================================================
 
 #CAIRO_ENABLE_SURFACE_BACKEND(glesv2, OpenGLESv2, no,
+set(CAIRO_ENABLE_GLESV2 "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's OpenGLESv2 surface backend feature [default=no]"
+)
 set(use_glesv2 "no")
 # TODO:
 #set(CAIRO_HAS_GLESV2_SURFACE 1)
@@ -796,6 +834,9 @@ set(use_glesv2 "no")
 # ===========================================================================
 
 #CAIRO_ENABLE_SURFACE_BACKEND(glesv3, OpenGLESv3, no,
+set(CAIRO_ENABLE_GLESV3 "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's OpenGLESv3 surface backend feature [default=no]"
+)
 set(use_glesv3 "no")
 # TODO:
 #set(CAIRO_HAS_GLESV3_SURFACE 1)
@@ -804,6 +845,9 @@ set(use_glesv3 "no")
 # ===========================================================================
 
 #CAIRO_ENABLE_SURFACE_BACKEND(cogl, Cogl, no,
+set(CAIRO_ENABLE_COGL "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's Cogl surface backend feature [default=no]"
+)
 set(use_cogl "no")
 # TODO:
 #set(CAIRO_HAS_COGL_SURFACE 1)
@@ -812,6 +856,9 @@ set(use_cogl "no")
 # ===========================================================================
 
 #CAIRO_ENABLE_SURFACE_BACKEND(directfb, directfb, no,
+set(CAIRO_ENABLE_DIRECTFB "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's directfb surface backend feature [default=no]"
+)
 set(use_directfb "no")
 # TODO:
 #set(CAIRO_HAS_DIRECTFB_SURFACE 1)
@@ -820,24 +867,36 @@ set(use_directfb "no")
 # ===========================================================================
 
 #CAIRO_ENABLE_SURFACE_BACKEND(vg, OpenVG, no,
+set(CAIRO_ENABLE_VG "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's OpenVG surface backend feature [default=no]"
+)
 set(use_vg "no")
 # TODO:
 #set(CAIRO_HAS_VG_SURFACE 1)
 
 
 #CAIRO_ENABLE_FUNCTIONS(egl, EGL, auto,
+set(CAIRO_ENABLE_EGL "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's EGL functions feature [default=auto]"
+)
 set(use_egl "no")
 # TODO:
 #set(CAIRO_HAS_EGL_FUNCTIONS 1)
 
 
 #CAIRO_ENABLE_FUNCTIONS(glx, GLX, auto,
+set(CAIRO_ENABLE_GLX "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's GLX functions feature [default=auto]"
+)
 set(use_glx "no")
 # TODO:
 #set(CAIRO_HAS_GLX_FUNCTIONS 1)
 
 
 #CAIRO_ENABLE_FUNCTIONS(wgl, WGL, auto,
+set(CAIRO_ENABLE_WGL "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's WGL functions feature [default=auto]"
+)
 set(use_wgl "no")
 check_include_file("windows.h" HAVE_WINDOWS_H)
 # TODO:
@@ -1008,6 +1067,9 @@ set(test_svg "no")
 # ===========================================================================
 
 #CAIRO_ENABLE(test_surfaces, test surfaces, no)
+set(CAIRO_ENABLE_TEST_SURFACES "no" CACHE STRING
+  "[no/auto/yes] Enable cairo's test surfaces feature [default=no]"
+)
 set(test_surfaces "no")
 # TODO:
 #set(CAIRO_HAS_TEST_SURFACES 1)
@@ -1117,6 +1179,10 @@ endif()
 # ===========================================================================
 # Build gobject integration library
 
+#CAIRO_ENABLE_FUNCTIONS(gobject, gobject, auto,
+set(CAIRO_ENABLE_GOBJECT "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's gobject functions feature [default=auto]"
+)
 set(use_gobject "no")
 # TODO:
 #set(CAIRO_HAS_GOBJECT_FUNCTIONS 1)
@@ -1125,6 +1191,14 @@ set(use_gobject "no")
 # ===========================================================================
 # Default to quick testing during development, but force a full test before
 # release
+
+#AC_ARG_ENABLE(full-testing,
+option(CAIRO_ENABLE_FULL_TESTING
+"Sets the test suite to perform full testing by
+default, which will dramatically slow down make
+check, but is a *requirement* before release."
+  OFF
+)
 # TODO:
 
 
@@ -1146,11 +1220,17 @@ set(use_gobject "no")
 # TODO:
 
 #CAIRO_ENABLE(trace, cairo-trace, auto,
+set(CAIRO_ENABLE_TRACE "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's cairo-trace feature [default=auto]"
+)
 set(use_trace "no")
 # TODO:
 #set(CAIRO_HAS_TRACE 1)
 
 #CAIRO_ENABLE(interpreter, cairo-script-interpreter, yes,
+set(CAIRO_ENABLE_INTERPRETER "yes" CACHE STRING
+  "[no/auto/yes] Enable cairo's cairo-script-interpreter feature [default=yes]"
+)
 set(use_interpreter "no")
 # TODO:
 
@@ -1160,6 +1240,9 @@ set(use_interpreter "no")
 #set(HAVE_BFD 1)
 
 #CAIRO_ENABLE(symbol_lookup, symbol-lookup, auto,
+set(CAIRO_ENABLE_SYMBOL_LOOKUP "auto" CACHE STRING
+  "[no/auto/yes] Enable cairo's symbol-lookup feature [default=auto]"
+)
 set(use_symbol_lookup "no")
 # TODO:
 #set(CAIRO_HAS_SYMBOL_LOOKUP 1)
