@@ -115,6 +115,11 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 11)
 
 # Cairo
 target_link_libraries(${PROJECT_NAME} PRIVATE Cairo::Cairo)
+if(NOT BUILD_SHARED_LIBS)
+  if(WIN32)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE CAIRO_WIN32_STATIC_BUILD)
+  endif()
+endif()
 
 # Pixman
 target_link_libraries(${PROJECT_NAME} PRIVATE Pixman::Pixman)

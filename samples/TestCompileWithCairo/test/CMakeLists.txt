@@ -42,6 +42,11 @@ if(BUILD_TESTING)
 
   # Cairo
   target_link_libraries(${test_NAME} PRIVATE Cairo::Cairo)
+  if(NOT BUILD_SHARED_LIBS)
+    if(WIN32)
+      target_compile_definitions(${test_NAME} PRIVATE CAIRO_WIN32_STATIC_BUILD)
+    endif()
+  endif()
 
   # Pixman
   target_link_libraries(${test_NAME} PRIVATE Pixman::Pixman)
