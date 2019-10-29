@@ -65,7 +65,7 @@ set(LIBCMAKER_PIXMAN_SRC_DIR ${PIXMAN_lib_DIR})
 #-----------------------------------------------------------------------
 
 option(CAIRO_ENABLE_GTK_DOC "use gtk-doc to build documentation [[default=no]]" OFF)
-option(AC_DISABLE_LARGEFILE "omit support for large files" OFF)
+option(CAIRO_DISABLE_LARGEFILE "omit support for large files" OFF)
 option(CAIRO_DISABLE_ATOMIC "disable use of native atomic operations" OFF)
 option(CAIRO_ENABLE_GCOV "Enable gcov" OFF)
 option(CAIRO_DISABLE_VALGRIND "Disable valgrind support" OFF)

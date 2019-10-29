@@ -13,9 +13,11 @@ include(AutoconfHelper)
 include(CairoHelper)
 
 include(CheckIncludeFile)
+include(CheckFileOffsetBits)
 include(CheckFunctionExists)
 include(CheckLibraryExists)
 include(CheckTypeSize)
+include(TestLargeFiles)
 
 
 # ===========================================================================
@@ -193,7 +195,18 @@ option(CAIRO_ENABLE_GTK_DOC "use gtk-doc to build documentation [[default=no]]" 
 set(enable_gtk_doc "no")
 # TODO:
 
-ac_sys_largefile()  # set _FILE_OFFSET_BITS and _LARGE_FILES
+option(CAIRO_DISABLE_LARGEFILE "omit support for large files" OFF)
+if(NOT CAIRO_DISABLE_LARGEFILE)
+  if(NOT ANDROID OR NOT ANDROID_NATIVE_API_LEVEL LESS 21)
+    check_file_offset_bits()
+    # set _FILE_OFFSET_BITS=64
+
+    test_large_files(HAVE_OFF_T_64_FSEEKO_FTELLO)
+    # set (_FILE_OFFSET_BITS=64 OR _LARGE_FILES=1
+    #     OR _LARGEFILE_SOURCE=1 OR HAVE__FSEEKI64=1)
+    # AND HAVE_FSEEKO=1
+  endif()
+endif()
 
 
 # ===========================================================================

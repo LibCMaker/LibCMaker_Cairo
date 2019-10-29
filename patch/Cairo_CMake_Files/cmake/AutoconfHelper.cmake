@@ -203,56 +203,6 @@ function(ac_check_sizeof typename)
 endfunction()
 
 
-# Also from the mono sources, kind of implements AC_SYS_LARGEFILE
-function(ac_sys_largefile)
-  option(AC_DISABLE_LARGEFILE "omit support for large files" OFF)
-  if(AC_DISABLE_LARGEFILE)
-    return()
-  endif()
-
-  check_c_source_runs("
-#include <sys/types.h>
-#define BIG_OFF_T (((off_t)1<<62)-1+((off_t)1<<62))
-int main (int argc, char **argv) {
-    int big_off_t=((BIG_OFF_T%2147483629==721) &&
-                   (BIG_OFF_T%2147483647==1));
-    return big_off ? 0 : 1;
-}
-" HAVE_LARGE_FILE_SUPPORT
-)
-
-# Check if it makes sense to define _LARGE_FILES or _FILE_OFFSET_BITS
-  if(HAVE_LARGE_FILE_SUPPORT)
-    return()
-  endif()
-
-  set(_LARGE_FILE_EXTRA_SRC "
-#include <sys/types.h>
-int main (int argc, char **argv) {
-  return sizeof(off_t) == 8 ? 0 : 1;
-}
-")
-  check_c_source_runs("#define _LARGE_FILES\n${_LARGE_FILE_EXTRA_SRC}"
-    HAVE_USEFUL_D_LARGE_FILES
-  )
-  if(NOT HAVE_USEFUL_D_LARGE_FILES)
-    if(NOT DEFINED HAVE_USEFUL_D_FILE_OFFSET_BITS)
-      set(SHOW_LARGE_FILE_WARNING TRUE)
-    endif()
-    check_c_source_runs("#define _FILE_OFFSET_BITS 64\n${_LARGE_FILE_EXTRA_SRC}"
-      HAVE_USEFUL_D_FILE_OFFSET_BITS
-    )
-    if(HAVE_USEFUL_D_FILE_OFFSET_BITS)
-      set(_FILE_OFFSET_BITS 64 PARENT_SCOPE)
-    elseif(SHOW_LARGE_FILE_WARNING)
-      message(WARNING "No 64 bit file support through off_t available.")
-    endif()
-  else()
-    set(_LARGE_FILES 1 PARENT_SCOPE)
-  endif()
-endfunction()
-
-
 function(ac_try_compile includes function_body out_var)
   set(tc_bin_dir "${PROJECT_BINARY_DIR}/try_compile_${out_var}")
   set(c_file "${PROJECT_BINARY_DIR}/try_compile_${out_var}.c")
@@ -394,6 +344,56 @@ int main(int argc, char **argv)
     message(STATUS "Looking for ANSI-C headers - found")
   else()
     message(STATUS "Looking for ANSI-C headers - not found")
+  endif()
+endfunction()
+
+
+# Also from the mono sources, kind of implements AC_SYS_LARGEFILE
+function(ac_sys_largefile)
+  option(AC_DISABLE_LARGEFILE "omit support for large files" OFF)
+  if(AC_DISABLE_LARGEFILE)
+    return()
+  endif()
+
+  check_c_source_runs("
+#include <sys/types.h>
+#define BIG_OFF_T (((off_t)1<<62)-1+((off_t)1<<62))
+int main (int argc, char **argv) {
+    int big_off_t=((BIG_OFF_T%2147483629==721) &&
+                   (BIG_OFF_T%2147483647==1));
+    return big_off ? 0 : 1;
+}
+" HAVE_LARGE_FILE_SUPPORT
+)
+
+# Check if it makes sense to define _LARGE_FILES or _FILE_OFFSET_BITS
+  if(HAVE_LARGE_FILE_SUPPORT)
+    return()
+  endif()
+
+  set(_LARGE_FILE_EXTRA_SRC "
+#include <sys/types.h>
+int main (int argc, char **argv) {
+  return sizeof(off_t) == 8 ? 0 : 1;
+}
+")
+  check_c_source_runs("#define _LARGE_FILES\n${_LARGE_FILE_EXTRA_SRC}"
+    HAVE_USEFUL_D_LARGE_FILES
+  )
+  if(NOT HAVE_USEFUL_D_LARGE_FILES)
+    if(NOT DEFINED HAVE_USEFUL_D_FILE_OFFSET_BITS)
+      set(SHOW_LARGE_FILE_WARNING TRUE)
+    endif()
+    check_c_source_runs("#define _FILE_OFFSET_BITS 64\n${_LARGE_FILE_EXTRA_SRC}"
+      HAVE_USEFUL_D_FILE_OFFSET_BITS
+    )
+    if(HAVE_USEFUL_D_FILE_OFFSET_BITS)
+      set(_FILE_OFFSET_BITS 64 PARENT_SCOPE)
+    elseif(SHOW_LARGE_FILE_WARNING)
+      message(WARNING "No 64 bit file support through off_t available.")
+    endif()
+  else()
+    set(_LARGE_FILES 1 PARENT_SCOPE)
   endif()
 endfunction()
 
