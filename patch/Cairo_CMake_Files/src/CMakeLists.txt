@@ -13,25 +13,6 @@
 
 include(${CMAKE_CURRENT_LIST_DIR}/CMakeLists.features.cmake)
 
-set(__enabled_cairo_headers)
-foreach(src_file IN LISTS enabled_cairo_headers)
-  list(APPEND __enabled_cairo_headers "${CMAKE_CURRENT_LIST_DIR}/${src_file}")
-endforeach()
-set(enabled_cairo_headers ${__enabled_cairo_headers})
-
-set(__enabled_cairo_private)
-foreach(src_file IN LISTS enabled_cairo_private)
-  list(APPEND __enabled_cairo_private "${CMAKE_CURRENT_LIST_DIR}/${src_file}")
-endforeach()
-set(enabled_cairo_private ${__enabled_cairo_private})
-
-set(__enabled_cairo_sources)
-foreach(src_file IN LISTS enabled_cairo_sources)
-  list(APPEND __enabled_cairo_sources "${CMAKE_CURRENT_LIST_DIR}/${src_file}")
-endforeach()
-set(enabled_cairo_sources ${__enabled_cairo_sources})
-
-
 if(BUILD_SHARED_LIBS)
   set(CAIRO_TARGET cairo)
 else()

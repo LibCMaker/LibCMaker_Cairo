@@ -16,4 +16,5 @@ project(cairo C)
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
 include(${CMAKE_CURRENT_LIST_DIR}/configure.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/src/CMakeLists.txt)
+
+add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/src)
