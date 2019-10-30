@@ -4,6 +4,8 @@
 #  CAIRO_FOUND - Cairo was found
 #  CAIRO_INCLUDE_DIRS - the Cairo include directories
 #  CAIRO_LIBRARIES - link these to use Cairo
+#  CAIRO_DEFINITIONS - Contains defines required to compile
+#                      with Cairo, e.g. CAIRO_WIN32_STATIC_BUILD
 #  Cairo::Cairo - imported target
 #
 
@@ -21,6 +23,12 @@ find_library(CAIRO_LIBRARIES
   NO_SYSTEM_ENVIRONMENT_PATH
   NO_CMAKE_SYSTEM_PATH
 )
+
+if(NOT BUILD_SHARED_LIBS)
+  if(WIN32)
+    set(CAIRO_DEFINITIONS CAIRO_WIN32_STATIC_BUILD)
+  endif()
+endif()
 
 if(CAIRO_INCLUDE_DIRS)
   if(EXISTS "${CAIRO_INCLUDE_DIRS}/cairo-version.h")
@@ -53,6 +61,9 @@ if(CAIRO_FOUND AND NOT TARGET Cairo::Cairo)
   set_target_properties(Cairo::Cairo PROPERTIES
     INTERFACE_INCLUDE_DIRECTORIES "${CAIRO_INCLUDE_DIRS}"
     IMPORTED_LOCATION "${CAIRO_LIBRARIES}"
+  )
+  set_property(TARGET Cairo::Cairo APPEND PROPERTY
+    INTERFACE_COMPILE_DEFINITIONS ${CAIRO_DEFINITIONS}
   )
 endif()
 
