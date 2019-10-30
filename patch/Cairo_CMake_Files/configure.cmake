@@ -12,10 +12,11 @@
 include(AutoconfHelper)
 include(CairoHelper)
 
-include(CheckIncludeFile)
 include(CheckFileOffsetBits)
 include(CheckFunctionExists)
+include(CheckIncludeFile)
 include(CheckLibraryExists)
+include(CheckSymbolExists)
 include(CheckTypeSize)
 include(TestLargeFiles)
 
@@ -179,7 +180,18 @@ set(PACKAGE_URL       "https://cairographics.org/")
 # define AC_APPLE_UNIVERSAL_BUILD
 
 #AC_USE_SYSTEM_EXTENSIONS
-# TODO:
+if(NOT DEFINED _GNU_SOURCE)
+  check_symbol_exists(__GNU_LIBRARY__ "features.h" cse_GNU_SOURCE)
+
+  if(NOT cse_GNU_SOURCE)
+    unset(cse_GNU_SOURCE CACHE)
+    check_symbol_exists(_GNU_SOURCE "features.h" cse_GNU_SOURCE)
+  endif()
+
+  if(cse_GNU_SOURCE OR ANDROID)
+    set(_GNU_SOURCE 1)
+  endif()
+endif()
 
 check_include_file("unistd.h" HAVE_UNISTD_H)
 check_include_file("sys/ioctl.h" HAVE_SYS_IOCTL_H)

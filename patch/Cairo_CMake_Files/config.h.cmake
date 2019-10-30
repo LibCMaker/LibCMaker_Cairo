@@ -321,7 +321,7 @@
 #cmakedefine LT_OBJDIR @LT_OBJDIR@
 
 /* Define to the address where bug reports for this package should be sent. */
-#cmakedefine PACKAGE_BUGREPORT @PACKAGE_BUGREPORT@
+#cmakedefine PACKAGE_BUGREPORT "@PACKAGE_BUGREPORT@"
 
 /* Define to the full name of this package. */
 #cmakedefine PACKAGE_NAME @PACKAGE_NAME@
@@ -333,7 +333,7 @@
 #cmakedefine PACKAGE_TARNAME @PACKAGE_TARNAME@
 
 /* Define to the home page for this package. */
-#cmakedefine PACKAGE_URL @PACKAGE_URL@
+#cmakedefine PACKAGE_URL "@PACKAGE_URL@"
 
 /* Define to the version of this package. */
 #cmakedefine PACKAGE_VERSION @PACKAGE_VERSION@
@@ -362,37 +362,26 @@
 
 
 /*Defined in AC_USE_SYSTEM_EXTENSIONS*/
-/*TODO: AC_USE_SYSTEM_EXTENSIONS*/
 /* Enable extensions on AIX 3, Interix.  */
-/*** TODO
 #ifndef _ALL_SOURCE
-# define _ALL_SOURCE 1
+#cmakedefine _ALL_SOURCE @_ALL_SOURCE@
 #endif
-***/
 /* Enable GNU extensions on systems that have them.  */
-/*** TODO
 #ifndef _GNU_SOURCE
-# define _GNU_SOURCE 1
+#cmakedefine _GNU_SOURCE @_GNU_SOURCE@
 #endif
-***/
 /* Enable threading extensions on Solaris.  */
-/*** TODO
 #ifndef _POSIX_PTHREAD_SEMANTICS
-# define _POSIX_PTHREAD_SEMANTICS 1
+#cmakedefine _POSIX_PTHREAD_SEMANTICS @_POSIX_PTHREAD_SEMANTICS@
 #endif
-***/
 /* Enable extensions on HP NonStop.  */
-/*** TODO
 #ifndef _TANDEM_SOURCE
-# define _TANDEM_SOURCE 1
+#cmakedefine _TANDEM_SOURCE @_TANDEM_SOURCE@
 #endif
-***/
 /* Enable general extensions on Solaris.  */
-/*** TODO
 #ifndef __EXTENSIONS__
-# define __EXTENSIONS__ 1
+#cmakedefine __EXTENSIONS__ @__EXTENSIONS__@
 #endif
-***/
 
 
 /* Define to the value your compiler uses to support the warn-unused-result
