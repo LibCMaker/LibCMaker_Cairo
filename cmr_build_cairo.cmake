@@ -174,7 +174,11 @@ set(CAIRO_ENABLE_TEE "no" CACHE STRING
 set(CAIRO_ENABLE_XML "no" CACHE STRING
   "[no/auto/yes] Enable cairo's xml surface backend feature [default=no]"
 )
-set(CAIRO_ENABLE_PTHREAD "yes" CACHE STRING
+set(_enable_pthread "yes")
+if(MSVC)
+  set(_enable_pthread "auto")
+endif()
+set(CAIRO_ENABLE_PTHREAD ${_enable_pthread} CACHE STRING
   "[no/auto/yes] Enable cairo's pthread feature [default=auto]"
 )
 set(CAIRO_ENABLE_GOBJECT "no" CACHE STRING
