@@ -417,10 +417,7 @@
 #cmakedefine X_DISPLAY_MISSING @X_DISPLAY_MISSING@
 
 
-
-
 /*Defined in AC_SYS_LARGEFILE*/
-/*TODO: AC_SYS_LARGEFILE*/
 
 /* Enable large inode numbers on Mac OS X 10.5.  */
 #ifndef _DARWIN_USE_64_BIT_INODE
@@ -432,8 +429,6 @@
 
 /* Define for large files, on AIX-style hosts. */
 #cmakedefine _LARGE_FILES @_LARGE_FILES@
-
-
 
 
 /*Defined in AC_USE_SYSTEM_EXTENSIONS*/
@@ -448,8 +443,6 @@
 
 /* Define to 1 if you need to in order for `stat' and other things to work. */
 #cmakedefine _POSIX_SOURCE @_POSIX_SOURCE@
-
-
 
 
 /* Define to `__inline__' or `__inline' if that's what the C compiler

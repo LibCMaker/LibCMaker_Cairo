@@ -568,10 +568,10 @@ set(have_lzo "no")
 # TODO:
 #set(HAVE_LZO 1)
 
-# TODO:
 #AC_CHECK_LIB(dl, dlsym,
 set(have_dlsym "no")
 set(have_dl "no")
+# TODO:
 #set(HAVE_DLFCN_H 1)
 #set(CAIRO_HAS_DL 1)
 #set(CAIRO_HAS_DLSYM 1)
