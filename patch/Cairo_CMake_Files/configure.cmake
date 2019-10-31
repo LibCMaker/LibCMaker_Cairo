@@ -376,12 +376,16 @@ ac_c_bigendian()  # set WORDS_BIGENDIAN
 #set(FLOAT_WORDS_BIGENDIAN 1)
 
 option(CAIRO_DISABLE_ATOMIC "disable use of native atomic operations" OFF)
-# TODO:
-#define ATOMIC_OP_NEEDS_MEMORY_BARRIER
-#set(HAVE_CXX11_ATOMIC_PRIMITIVES 1)
-#set(HAVE_GCC_LEGACY_ATOMICS 1)
-#set(HAVE_LIB_ATOMIC_OPS 1)
-#set(HAVE_OS_ATOMIC_OPS 1)
+if(NOT CAIRO_DISABLE_ATOMIC)
+  cairo_check_native_atomic_primitives()
+  # set HAVE_CXX11_ATOMIC_PRIMITIVES to 1
+  # set HAVE_GCC_LEGACY_ATOMICS to 1
+  # set HAVE_LIB_ATOMIC_OPS to 1
+  # set HAVE_OS_ATOMIC_OPS to 1
+
+  cairo_check_atomic_op_needs_memory_barrier()
+  # set ATOMIC_OP_NEEDS_MEMORY_BARRIER to 1
+endif()
 
 check_type_size("void *"    SIZEOF_VOID_P)
 check_type_size("int"       SIZEOF_INT)
@@ -442,9 +446,6 @@ check_include_file("sys/un.h" HAVE_SYS_UN_H)
 
 # Check for infinite loops
 check_function_exists(alarm HAVE_ALARM)
-
-# TODO:
-#set(HAVE_BFD 1)
 
 # check for CPU affinity support
 check_include_file("sched.h" HAVE_SCHED_H)
@@ -1002,12 +1003,8 @@ if(CAIRO_ENABLE_FC)
     set(CAIRO_HAS_FC_FONT 1)
     list(INSERT CAIRO_LIBS 0 Fontconfig::Fontconfig)
 
-    list(APPEND CMAKE_REQUIRED_LIBRARIES ${Fontconfig_LIBRARIES})
-    list(APPEND CMAKE_REQUIRED_INCLUDES ${Fontconfig_INCLUDE_DIRS})
-
-    # TODO: check and compare with CAIRO_CHECK_FUNCS_WITH_FLAGS(FcInit FcFini, [$FONTCONFIG_CFLAGS], [$FONTCONFIG_LIBS])
-    check_function_exists(FcInit HAVE_FCINIT)
-    check_function_exists(FcFini HAVE_FCFINI)
+    check_fontconfig_function_exists("FcInit" HAVE_FCINIT)
+    check_fontconfig_function_exists("FcFini" HAVE_FCFINI)
   endif()
 endif()
 
