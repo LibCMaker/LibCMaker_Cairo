@@ -69,53 +69,37 @@ option(CAIRO_DISABLE_LARGEFILE "omit support for large files" OFF)
 option(CAIRO_DISABLE_ATOMIC "disable use of native atomic operations" OFF)
 option(CAIRO_ENABLE_GCOV "Enable gcov" OFF)
 option(CAIRO_DISABLE_VALGRIND "Disable valgrind support" OFF)
-# TODO:
-#set(CAIRO_ENABLE_XLIB "auto" CACHE STRING
-#  "[no/auto/yes] Enable cairo's Xlib surface backend feature [default=auto]"
-#)
 set(CAIRO_ENABLE_XLIB "no" CACHE STRING
   "[no/auto/yes] Enable cairo's Xlib surface backend feature [default=auto]"
 )
-# TODO:
-#set(CAIRO_ENABLE_XLIB_XRENDER "auto" CACHE STRING
-#  "[no/auto/yes] Enable cairo's Xlib Xrender surface backend feature [default=auto]"
-#)
 set(CAIRO_ENABLE_XLIB_XRENDER "no" CACHE STRING
   "[no/auto/yes] Enable cairo's Xlib Xrender surface backend feature [default=auto]"
 )
-# TODO:
-#set(CAIRO_ENABLE_XCB "auto" CACHE STRING
-#  "[no/auto/yes] Enable cairo's XCB surface backend feature [default=auto]"
-#)
 set(CAIRO_ENABLE_XCB "no" CACHE STRING
   "[no/auto/yes] Enable cairo's XCB surface backend feature [default=auto]"
 )
 set(CAIRO_ENABLE_XLIB_XCB "no" CACHE STRING
   "[no/auto/yes] Enable cairo's Xlib/XCB functions feature [default=no]"
 )
-# TODO:
-#set(CAIRO_ENABLE_XCB_SHM "auto" CACHE STRING
-#  "[no/auto/yes] Enable cairo's XCB/SHM functions feature [default=auto]"
-#)
 set(CAIRO_ENABLE_XCB_SHM "no" CACHE STRING
   "[no/auto/yes] Enable cairo's XCB/SHM functions feature [default=auto]"
 )
 set(CAIRO_ENABLE_QT "no" CACHE STRING
   "[no/auto/yes] Enable cairo's Qt surface backend feature [default=no]"
 )
-set(CAIRO_ENABLE_QUARTZ "auto" CACHE STRING
+set(CAIRO_ENABLE_QUARTZ "no" CACHE STRING
   "[no/auto/yes] Enable cairo's Quartz surface backend feature [default=auto]"
 )
-set(CAIRO_ENABLE_QUARTZ_FONT "auto" CACHE STRING
+set(CAIRO_ENABLE_QUARTZ_FONT "no" CACHE STRING
   "[no/auto/yes] Enable cairo's Quartz font backend feature [default=auto]"
 )
 set(CAIRO_ENABLE_QUARTZ_IMAGE "no" CACHE STRING
   "[no/auto/yes] Enable cairo's Quartz Image surface backend feature [default=no]"
 )
-set(CAIRO_ENABLE_WIN32 "auto" CACHE STRING
+set(CAIRO_ENABLE_WIN32 "no" CACHE STRING
   "[no/auto/yes] Enable cairo's Microsoft Windows surface backend feature [default=auto]"
 )
-set(CAIRO_ENABLE_WIN32_FONT "auto" CACHE STRING
+set(CAIRO_ENABLE_WIN32_FONT "no" CACHE STRING
   "[no/auto/yes] Enable cairo's Microsoft Windows font backend feature [default=auto]"
 )
 set(CAIRO_ENABLE_OS2 "no" CACHE STRING
@@ -154,22 +138,22 @@ set(CAIRO_ENABLE_DIRECTFB "no" CACHE STRING
 set(CAIRO_ENABLE_VG "no" CACHE STRING
   "[no/auto/yes] Enable cairo's OpenVG surface backend feature [default=no]"
 )
-set(CAIRO_ENABLE_EGL "auto" CACHE STRING
+set(CAIRO_ENABLE_EGL "no" CACHE STRING
   "[no/auto/yes] Enable cairo's EGL functions feature [default=auto]"
 )
-set(CAIRO_ENABLE_GLX "auto" CACHE STRING
+set(CAIRO_ENABLE_GLX "no" CACHE STRING
   "[no/auto/yes] Enable cairo's GLX functions feature [default=auto]"
 )
-set(CAIRO_ENABLE_WGL "auto" CACHE STRING
+set(CAIRO_ENABLE_WGL "no" CACHE STRING
   "[no/auto/yes] Enable cairo's WGL functions feature [default=auto]"
 )
 set(CAIRO_ENABLE_SCRIPT "yes" CACHE STRING
   "[no/auto/yes] Enable cairo's script surface backend feature [default=yes]"
 )
-set(CAIRO_ENABLE_FT "auto" CACHE STRING
+set(CAIRO_ENABLE_FT "yes" CACHE STRING
   "[no/auto/yes] Enable cairo's FreeType font backend feature [default=auto]"
 )
-set(CAIRO_ENABLE_FC "auto" CACHE STRING
+set(CAIRO_ENABLE_FC "yes" CACHE STRING
   "[no/auto/yes] Enable cairo's Fontconfig font backend feature [default=auto]"
 )
 set(CAIRO_ENABLE_PS "yes" CACHE STRING
@@ -190,10 +174,10 @@ set(CAIRO_ENABLE_TEE "no" CACHE STRING
 set(CAIRO_ENABLE_XML "no" CACHE STRING
   "[no/auto/yes] Enable cairo's xml surface backend feature [default=no]"
 )
-set(CAIRO_ENABLE_PTHREAD "auto" CACHE STRING
+set(CAIRO_ENABLE_PTHREAD "yes" CACHE STRING
   "[no/auto/yes] Enable cairo's pthread feature [default=auto]"
 )
-set(CAIRO_ENABLE_GOBJECT "auto" CACHE STRING
+set(CAIRO_ENABLE_GOBJECT "no" CACHE STRING
   "[no/auto/yes] Enable cairo's gobject functions feature [default=auto]"
 )
 option(CAIRO_ENABLE_FULL_TESTING
@@ -202,13 +186,13 @@ default, which will dramatically slow down make
 check, but is a *requirement* before release."
   OFF
 )
-set(CAIRO_ENABLE_TRACE "auto" CACHE STRING
+set(CAIRO_ENABLE_TRACE "no" CACHE STRING
   "[no/auto/yes] Enable cairo's cairo-trace feature [default=auto]"
 )
-set(CAIRO_ENABLE_INTERPRETER "yes" CACHE STRING
+set(CAIRO_ENABLE_INTERPRETER "no" CACHE STRING
   "[no/auto/yes] Enable cairo's cairo-script-interpreter feature [default=yes]"
 )
-set(CAIRO_ENABLE_SYMBOL_LOOKUP "auto" CACHE STRING
+set(CAIRO_ENABLE_SYMBOL_LOOKUP "no" CACHE STRING
   "[no/auto/yes] Enable cairo's symbol-lookup feature [default=auto]"
 )
 option(CAIRO_DISABLE_SOME_FLOATING_POINT
