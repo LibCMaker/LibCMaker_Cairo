@@ -158,7 +158,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE PNG::PNG)
 # zlib
 target_link_libraries(${PROJECT_NAME} PRIVATE ZLIB::ZLIB)  # icluded in PNG::PNG
 
-# Threads
+# Threads, pthread
 if(CMAKE_USE_PTHREADS_INIT)
   target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads)
 endif()

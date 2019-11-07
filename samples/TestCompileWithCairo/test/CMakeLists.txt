@@ -85,7 +85,7 @@ if(BUILD_TESTING)
   # zlib
   target_link_libraries(${test_NAME} PRIVATE ZLIB::ZLIB)  # icluded in PNG::PNG
 
-  # Threads
+  # Threads, pthread
   if(CMAKE_USE_PTHREADS_INIT)
     target_link_libraries(${test_NAME} PRIVATE Threads::Threads)
   endif()
