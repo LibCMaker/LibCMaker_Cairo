@@ -51,7 +51,7 @@ if(MSVC)
 endif()
 set(LIBCMAKER_EXPAT_SRC_DIR "${EXPAT_lib_DIR}")
 if(FT_WITH_HARFBUZZ)
-  set(LIBCMAKER_HARFBUZZ_SRC_DIR "${HB_lib_DIR}")
+  set(LIBCMAKER_HARFBUZZ_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_HarfBuzz")
   # To use our FindHarfBuzz.cmake.
   list(APPEND CMAKE_MODULE_PATH "${LIBCMAKER_HARFBUZZ_SRC_DIR}/cmake/modules")
 endif()
