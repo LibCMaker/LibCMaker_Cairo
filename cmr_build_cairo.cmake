@@ -44,20 +44,20 @@ list(APPEND CMAKE_MODULE_PATH "${CAIRO_lib_DIR}/cmake/modules")
 set(COPY_CAIRO_CMAKE_BUILD_SCRIPTS ON)
 
 # Used in 'cmr_build_rules_cairo.cmake'.
-set(LIBCMAKER_ZLIB_SRC_DIR ${ZLIB_lib_DIR})
-set(LIBCMAKER_LIBPNG_SRC_DIR ${LIBPNG_lib_DIR})
+set(LIBCMAKER_ZLIB_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_zlib")
+set(LIBCMAKER_LIBPNG_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_libpng")
 if(MSVC)
-  set(LIBCMAKER_DIRENT_SRC_DIR "${DIRENT_lib_DIR}")
+  set(LIBCMAKER_DIRENT_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_Dirent")
 endif()
-set(LIBCMAKER_EXPAT_SRC_DIR "${EXPAT_lib_DIR}")
+set(LIBCMAKER_EXPAT_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_Expat")
 if(FT_WITH_HARFBUZZ)
   set(LIBCMAKER_HARFBUZZ_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_HarfBuzz")
   # To use our FindHarfBuzz.cmake.
   list(APPEND CMAKE_MODULE_PATH "${LIBCMAKER_HARFBUZZ_SRC_DIR}/cmake/modules")
 endif()
-set(LIBCMAKER_FREETYPE_SRC_DIR "${FT_lib_DIR}")
-set(LIBCMAKER_FONTCONFIG_SRC_DIR ${FONTCONFIG_lib_DIR})
-set(LIBCMAKER_PIXMAN_SRC_DIR ${PIXMAN_lib_DIR})
+set(LIBCMAKER_FREETYPE_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_FreeType")
+set(LIBCMAKER_FONTCONFIG_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_FontConfig")
+set(LIBCMAKER_PIXMAN_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_Pixman")
 
 
 #-----------------------------------------------------------------------
