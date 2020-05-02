@@ -107,7 +107,7 @@ add_executable(${PROJECT_NAME}
 #  ${example_src_DIR}/cairo_snippets_ps.c
 )
 set_property(TARGET ${PROJECT_NAME} PROPERTY C_STANDARD 11)
-if(NOT ANDROID AND NOT APPLE)
+if(NOT ANDROID AND NOT APPLE AND NOT MINGW)
   set_target_properties(${PROJECT_NAME} PROPERTIES
     # Link all libraries into the target so as not to use LD_LIBRARY_PATH.
     LINK_WHAT_YOU_USE ON
