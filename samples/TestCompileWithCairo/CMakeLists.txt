@@ -21,7 +21,7 @@
 #    along with this program. If not, see <http://www.gnu.org/licenses/>.
 # ****************************************************************************
 
-cmake_minimum_required(VERSION 3.4)
+cmake_minimum_required(VERSION 3.7)
 
 project(LibCMaker_Cairo_Compile_Test CXX C)
 
