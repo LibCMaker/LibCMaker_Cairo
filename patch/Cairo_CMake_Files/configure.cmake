@@ -406,9 +406,11 @@ endif()
 # Library checks
 # ====================================================================
 
-find_package(LibM)
-if(LIBM_FOUND)
-  list(INSERT CAIRO_LIBS 0 LIBM::LIBM)
+if(UNIX AND NOT ANDROID AND NOT APPLE AND NOT BEOS AND NOT HAIKU)
+  find_package(LibM)
+  if(LIBM_FOUND)
+    list(INSERT CAIRO_LIBS 0 LIBM::LIBM)
+  endif()
 endif()
 
 
