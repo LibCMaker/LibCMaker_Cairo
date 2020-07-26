@@ -29,9 +29,9 @@
 # Lib's name, version, paths
 #-----------------------------------------------------------------------
 
-set(CAIRO_lib_NAME      "Cairo")
-set(CAIRO_lib_VERSION   "1.17.2")
-set(CAIRO_lib_DIR       "${CMAKE_CURRENT_LIST_DIR}")
+set(CAIRO_lib_NAME "Cairo")
+set(CAIRO_lib_VERSION "1.17.2" CACHE STRING "CAIRO_lib_VERSION")
+set(CAIRO_lib_DIR "${CMAKE_CURRENT_LIST_DIR}" CACHE PATH "CAIRO_lib_DIR")
 
 # To use our Find<LibName>.cmake.
 list(APPEND CMAKE_MODULE_PATH "${CAIRO_lib_DIR}/cmake/modules")
@@ -41,23 +41,47 @@ list(APPEND CMAKE_MODULE_PATH "${CAIRO_lib_DIR}/cmake/modules")
 # LibCMaker_<LibName> specific vars and options
 #-----------------------------------------------------------------------
 
-set(COPY_CAIRO_CMAKE_BUILD_SCRIPTS ON)
+option(COPY_CAIRO_CMAKE_BUILD_SCRIPTS "COPY_CAIRO_CMAKE_BUILD_SCRIPTS" ON)
 
 # Used in 'cmr_build_rules_cairo.cmake'.
-set(LIBCMAKER_ZLIB_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_zlib")
-set(LIBCMAKER_LIBPNG_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_libpng")
+set(
+  LIBCMAKER_ZLIB_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_zlib"
+  CACHE PATH "LIBCMAKER_ZLIB_SRC_DIR"
+)
+set(
+  LIBCMAKER_LIBPNG_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_libpng"
+  CACHE PATH "LIBCMAKER_LIBPNG_SRC_DIR"
+)
 if(MSVC)
-  set(LIBCMAKER_DIRENT_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_Dirent")
+  set(
+    LIBCMAKER_DIRENT_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_Dirent"
+    CACHE PATH "LIBCMAKER_DIRENT_SRC_DIR"
+  )
 endif()
-set(LIBCMAKER_EXPAT_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_Expat")
+set(
+  LIBCMAKER_EXPAT_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_Expat"
+  CACHE PATH "LIBCMAKER_EXPAT_SRC_DIR"
+)
 if(FT_WITH_HARFBUZZ)
-  set(LIBCMAKER_HARFBUZZ_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_HarfBuzz")
+  set(
+    LIBCMAKER_HARFBUZZ_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_HarfBuzz"
+    CACHE PATH "LIBCMAKER_HARFBUZZ_SRC_DIR"
+  )
   # To use our FindHarfBuzz.cmake.
   list(APPEND CMAKE_MODULE_PATH "${LIBCMAKER_HARFBUZZ_SRC_DIR}/cmake/modules")
 endif()
-set(LIBCMAKER_FREETYPE_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_FreeType")
-set(LIBCMAKER_FONTCONFIG_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_FontConfig")
-set(LIBCMAKER_PIXMAN_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_Pixman")
+set(
+  LIBCMAKER_FREETYPE_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_FreeType"
+  CACHE PATH "LIBCMAKER_FREETYPE_SRC_DIR"
+)
+set(
+  LIBCMAKER_FONTCONFIG_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_FontConfig"
+  CACHE PATH "LIBCMAKER_FONTCONFIG_SRC_DIR"
+)
+set(
+  LIBCMAKER_PIXMAN_SRC_DIR "${LibCMaker_LIB_DIR}/LibCMaker_Pixman"
+  CACHE PATH "LIBCMAKER_PIXMAN_SRC_DIR"
+)
 
 
 #-----------------------------------------------------------------------
