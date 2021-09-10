@@ -40,4 +40,5 @@ cmr_LIB_DEPS_NAMES=(
   "LibCMaker_FreeType"
   "LibCMaker_FontConfig"
   "LibCMaker_Pixman"
+  "LibCMaker_Cairo"
 )
